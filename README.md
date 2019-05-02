@@ -212,7 +212,8 @@ Schéma = Ensemble des objets qui appartiennent à un utilisateur
 	
 ## IV - Dictionnaire de données
 
-Ensemble de table et de vues qui donne des informations sur le contenu d'une BDD
+- Enregistré dans la table SYSTEM pour l'utilisateur SYS
+- Ensemble de table et de vues qui donne des informations sur le contenu d'une BDD
 - Strucutres de stockage
 - Utilisateur et leurs droits
 - Objets (table, vues, index, procédures, fonctions...)
@@ -224,7 +225,7 @@ Le dictionnaire contient des vues.
 
 ## V - Vues 
 
-**Les vues permettent de suivre les valeurs des paramètres de l'instance en cours de fonctionnement
+Les vues permettent de suivre les valeurs des paramètres de l'instance en cours de fonctionnement
 Ex : On peut suivre l'allocation dynamique et les valeurs d'allocations : `Select * from v$memory_target_advice ;`
 
 **Notion de vues statiques :** 
@@ -252,10 +253,10 @@ Lors du démarrage de la BDD, on va ouvrir une instance :
 ⇒ MAIS avec RAC (Oracle Real Application Clusters), on peut utiliser Oracle sur des serveurs en cluster, et donc avoir plusieurs instances. Intéressante pour disponibilité mais complexe à mettre en œuvre.
 
 **Une instance se compose de  :** 
-	- Zone mémoire partagée (System Global Area - SGA) => Allouées au démarrage BDD
-	- Des processus background rôle bien précis ==> Allouées au démarrage BDD
-	- Des processus serveur chargés de traiter les requêtes utilisateurs
-	-  Dimensionnées par un ensemble de paramètre stockés dans un fichier de paramètres système "SPFILE<SID>.ora" généré à partir d'un fichier de paramètres caractères "PFILE<SID>.ora". Le SPFILE contient des variables qui configurent la SGA (Différentes zones mémoires des processus). Géré par le DBA (Database Administrator)
+- Zone mémoire partagée (System Global Area - SGA) => Allouées au démarrage BDD
+- Des processus background rôle bien précis ==> Allouées au démarrage BDD
+- Des processus serveur chargés de traiter les requêtes utilisateurs
+-  Dimensionnées par un ensemble de paramètre stockés dans un fichier de paramètres système "SPFILE<SID>.ora" généré à partir d'un fichier de paramètres caractères "PFILE<SID>.ora". Le SPFILE contient des variables qui configurent la SGA (Différentes zones mémoires des processus). Géré par le DBA (Database Administrator)
 
 **Y accèder :**
 ⇒ On accède à l'instance via des processus utilisateurs, qui correspondent à des applications. 
@@ -275,7 +276,7 @@ Lors du démarrage de la BDD, on va ouvrir une instance :
 	- Log Writer (LGWR) : écrit sur le disque le contenu du Redo Log BUffer dans les fichiers Redo
 	- Checkpoint (CKPT) : Crée des chkp via les entêtes, en enregistrant sur le disque, donnant la possibilité de lever un "Jalon" pour restaurer les données. 
 	- Process Monitor (PMON) : Chargé du nettoyage des processus utilisateur qui plante. Libère les ressources qui se sont mal terminées.
-	- System Monitor (SMON) : Restauration de l'instance après un arrêt normal. C'est le gardien de la cohésion des données. Lancée au démarrage.
+	- System Monitor (SMON) : Restauration de l'instance après un arrêt anormal. C'est le gardien de la cohésion des données. Lancée au démarrage.
 	- CJQ : Utilisé par le schedular,  génère les ps pour exécuter les job planifiés dans file d'attente interne oracle
 	- MMAN : distributeur de mémoire et coordonne la taille allouée aux différents composants
 	- MMON : programme et déclanche le ADDM (Automatic Database Diagnostic Monitor) qui effectue des analyses pour déterminer des problèmes potentiels
