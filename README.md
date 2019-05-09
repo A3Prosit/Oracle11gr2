@@ -83,14 +83,14 @@ la bdd est l'ensemble des fichers qui premettent de gérer les donées, elle est
 	- USERS tablespace de travail par défaut des utilisateurs
 - un fichier de paramètres binaire SPFIL\<SID>.ORA  contenant les paramètres de démarrage de l'instance et d'autres valeurs qui déterminent l'environement dans  lequel elle s'exécute, il est créé à partir du fichier INIT\<SID>.ORA
 - Un fichier de mots de passe avec le mdp du SYSDBA (et d'autres ou pas?)
-![](/archiInterne.jpg)
+![](pics/archiInterne.jpg)
 
 Une instance est l'ensemble des processus d'arrière plan (background processes) et zones mémoires qui sont allouées au démarrage de la base de données, pour permettre l'exploitation des données.
 Une instance ne peut ouvrir qu'unebdd à la fois et la plupart du temps une bdd n'est ouverte que par une seule instance
 
 Si on met en oeuvre l'option RAC (Oracle Real Application Clusters)  qui permet d'utiliser Oracle sur des serv en cluster on peut avoir une bdd ouverte par plusieurs instanes sur des noeuds distincrs du cluster. Elle permet une plus haute disponibilité mais est plus complexe à mettre en oeuvre
 
-![](/pics/cluter.jpg)
+![](pics/cluster.jpg)
 
 il y a en plus des processus de l'instance des processus utilisateurs correspondants à l'appli de l'utilisateur pour se co à la base. Dans une archi client/serv ces processus sont situés sur le poste de l'utilisateur et communiquet avec le serv à travers le réseau grâce à la couche Oracle Net
 
@@ -198,7 +198,7 @@ En pratique, une bas comportera donc d'autres fichiers de données appartenant �
 Les fichiers de données sont découpés en blocs d'une taille définie à la création de la base (2, 4, 8ko etc) La taille du bloc oracle est définie par le paramètre DB_BLOC_SIZE
 L'espace occupé par un objet dans un tablespace est appellé "segment". Un ensemble de blocs contigus dans un fichier de données est appellé un "extent"
 
-![](/pics/tablespace.jpg)
+![](pics/tablespace.jpg)
 
 ici on a la table Pays qui est un objet logique stocké dans le tablespace DATA et est constitué de 3 extents: 2 dans DATA01.DBF et 1 dans le 02
 
